@@ -20,7 +20,13 @@ function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   if (!dataLoaded) {
-    return <AppLoading startAsync={fetchFonts} onFinish={() => setDataLoaded(true)}/>;
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
   }
 
   const configureNewGameHandler = () => {
