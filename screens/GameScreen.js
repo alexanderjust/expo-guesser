@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, Text, Button, View, Alert } from "react-native";
 import NumberComponent from "../components/NumberComponent";
 import Card from "../components/Card";
-import defaultStyles from '../constants/default-styles';
+import defaultStyles from "../constants/default-styles";
+import MainButton from "../components/MainButton";
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -20,18 +21,17 @@ function GameScreen(props) {
     generateRandomBetween(1, 100, props.userChoice)
   );
 
-
-  const [rounds,setRounds] = useState(0);
+  const [rounds, setRounds] = useState(0);
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
 
-  const {userChoice, onGameOver} = props;
+  const { userChoice, onGameOver } = props;
 
-    useEffect(() => {
-        if (currentGuess === userChoice) {
-            onGameOver(rounds);
-        }
-    }, [ currentGuess, userChoice, onGameOver]);
+  useEffect(() => {
+    if (currentGuess === userChoice) {
+      onGameOver(rounds);
+    }
+  }, [currentGuess, userChoice, onGameOver]);
 
   const nextGuessHandler = (direction) => {
     if (
@@ -56,7 +56,7 @@ function GameScreen(props) {
       currentGuess
     );
     setCurrentGuess(nextNumber);
-    setRounds(curRounds => curRounds + 1)
+    setRounds((curRounds) => curRounds + 1);
   };
 
   return (
@@ -64,11 +64,13 @@ function GameScreen(props) {
       <Text style={defaultStyles.bodyText}>Oponents Guess:</Text>
       <NumberComponent>{currentGuess}</NumberComponent>
       <Card style={styles.buttonContainer}>
-        <Button title="LOWER" onPress={nextGuessHandler.bind(this, "lower")} />
-        <Button
-          title="GREATER"
-          onPress={nextGuessHandler.bind(this, "greater")}
-        />
+        <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
+          LOWER
+        </MainButton>
+
+        <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
+          GREATER
+        </MainButton>
       </Card>
     </View>
   );
@@ -84,8 +86,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-    width: 300,
-    maxWidth: "80%",
+    width: 400,
+    maxWidth: "90%",
   },
 });
 

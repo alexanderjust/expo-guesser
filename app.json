@@ -21,6 +21,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.fbp.guesser",
+      "versionCode": 1
     }
   }
 }
