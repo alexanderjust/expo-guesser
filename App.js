@@ -61,7 +61,7 @@ function App() {
 
   return (
     <View style={styles.screen}>
-      <Header title={"Guess a Number"} />
+      <Header title={"GUESS A NUMBER"} />
       {content}
     </View>
   );
