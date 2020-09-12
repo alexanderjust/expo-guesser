@@ -6,3 +6,4 @@ export default StyleSheet.create({
         color: 'red'
     }
 })
+
